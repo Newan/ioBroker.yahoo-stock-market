@@ -1,0 +1,77 @@
+{
+    "common": {
+        "name": "stock-market",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Stock market",
+        "titleLang": {
+            "en": "Stock market",
+            "de": "Stock market",
+            "ru": "Stock market",
+            "pt": "Stock market",
+            "nl": "Stock market",
+            "fr": "Stock market",
+            "it": "Stock market",
+            "es": "Stock market",
+            "pl": "Stock market",
+            "zh-cn": "Stock market"
+        },
+        "desc": {
+            "en": "Check the current stock value",
+            "de": "Check the current stock value",
+            "ru": "Check the current stock value",
+            "pt": "Check the current stock value",
+            "nl": "Check the current stock value",
+            "fr": "Check the current stock value",
+            "it": "Check the current stock value",
+            "es": "Check the current stock value",
+            "pl": "Check the current stock value",
+            "zh-cn": "Check the current stock value"
+        },
+        "authors": [
+            "Newan <info@newan.de>"
+        ],
+        "keywords": [
+            "stock market Börse Aktien Aktienwert"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "build/main.js",
+        "icon": "stock-market.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/Newan/ioBroker.stock-market/main/admin/stock-market.png",
+        "readme": "https://github.com/Newan/ioBroker.stock-market/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "misc-data",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ]
+    },
+    "native": {
+        "api_key": "",
+        "stock": "",
+        "interval": 60
+    },
+    "objects": [],
+    "instanceObjects": []
+}
