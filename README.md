@@ -21,7 +21,7 @@ Check the current stock value
     ### **WORK IN PROGRESS**
 -->
 
-### **WORK IN PROGRESS**
+### 0.0.2 (2022-02-14)
 * (Newan) initial release
 
 ## License
