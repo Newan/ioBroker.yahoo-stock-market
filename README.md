@@ -19,7 +19,7 @@ Check the current stock value
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### 0.0.2 (2022-09-12)
+### **WORK IN PROGRESS**
 * (Newan) initial release
 
 ## License
