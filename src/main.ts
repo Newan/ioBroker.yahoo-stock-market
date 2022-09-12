@@ -292,7 +292,7 @@ class StockMarket extends utils.Adapter {
      */
     private onUnload(callback: () => void): void {
         try {
-            clearInterval(this.myInterval);
+            clearTimeout(this.myInterval);
 
             callback();
         } catch (e) {

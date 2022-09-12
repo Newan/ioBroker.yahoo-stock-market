@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "yahoo-stock-market",
-        "version": "0.0.0",
+        "version": "0.0.3",
         "news": {
-            "0.0.1": {
+            "0.0.3": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
                 "ru": "Начальная версия",
@@ -16,7 +16,6 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "Stock Market",
         "titleLang": {
             "en": "Stock Market",
             "de": "Stock Market",
