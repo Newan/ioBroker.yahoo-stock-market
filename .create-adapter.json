@@ -1,7 +1,7 @@
 {
     "cli": true,
     "target": "directory",
-    "adapterName": "stock-market",
+    "adapterName": "yahoo-stock-market",
     "title": "Stock Market",
     "description": "stockmarket",
     "keywords": [

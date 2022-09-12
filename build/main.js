@@ -23,7 +23,7 @@ class StockMarket extends utils.Adapter {
   constructor(options = {}) {
     super({
       ...options,
-      name: "stock-market"
+      name: "yahoo-stock-market"
     });
     this.interval = 0;
     this.symbols = "";
@@ -31,7 +31,7 @@ class StockMarket extends utils.Adapter {
     this.on("unload", this.onUnload.bind(this));
   }
   async onReady() {
-    this.log.info("initialize Stock-Market adapter");
+    this.log.info("initialize yahoo-stock-market adapter");
     this.symbols = this.config.symbols;
     if (this.symbols == "" || this.symbols == void 0) {
       this.log.error("No stock symbols set. Please edit your adapter settings and restart this adapter!");

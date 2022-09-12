@@ -1,19 +1,19 @@
 {
-  "name": "iobroker.stock-market",
-  "version": "0.0.2",
+  "name": "iobroker.yahoo-stock-market",
+  "version": "0.0.0",
   "description": "stockmarket",
   "author": {
     "name": "Newan",
     "email": "info@newan.de"
   },
-  "homepage": "https://github.com/Newan/ioBroker.stock-market",
+  "homepage": "https://github.com/Newan/ioBroker.yahoo-stock-market",
   "license": "MIT",
   "keywords": [
     "stock market Börse Aktien Aktienwert"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Newan/ioBroker.stock-market.git"
+    "url": "https://github.com/Newan/ioBroker.yahoo-stock-market.git"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.2",
@@ -71,7 +71,7 @@
     "release": "release-script"
   },
   "bugs": {
-    "url": "https://github.com/Newan/ioBroker.stock-market/issues"
+    "url": "https://github.com/Newan/ioBroker.yahoo-stock-market/issues"
   },
   "readmeFilename": "README.md"
 }

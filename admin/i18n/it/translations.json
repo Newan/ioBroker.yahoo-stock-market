@@ -1,5 +1,5 @@
 {
-    "stock-market adapter settings": "Impostazioni dell'adattatore per stock-market",
+    "yahoo-stock-market adapter settings": "Impostazioni dell'adattatore per yahoo-stock-market",
     "interval": "Intervallo",
     "interval_help": "Intervallo in pochi minuti, per cercare il mercato azionario",
     "symbols": "Simboli",

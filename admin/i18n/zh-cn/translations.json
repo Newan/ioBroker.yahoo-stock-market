@@ -1,5 +1,5 @@
 {
-    "stock-market adapter settings": "stock-market的适配器设置",
+    "yahoo-stock-market adapter settings": "yahoo-stock-market的适配器设置",
     "interval": "间隔",
     "interval_help": "以分钟为间隔，查询股市",
     "symbols": "符号",

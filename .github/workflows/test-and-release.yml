@@ -89,8 +89,8 @@ jobs:
 #          # Then uncomment and customize the following block:
 #          sentry: true
 #          sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
-#          sentry-project: "iobroker-stock-market"
-#          sentry-version-prefix: "iobroker.stock-market"
+#          sentry-project: "iobroker-yahoo-stock-market"
+#          sentry-version-prefix: "iobroker.yahoo-stock-market"
 #          sentry-sourcemap-paths: "build/"
 #          # If your sentry project is linked to a GitHub repository, you can enable the following option
 #          # sentry-github-integration: true

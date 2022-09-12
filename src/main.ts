@@ -18,7 +18,7 @@ class StockMarket extends utils.Adapter {
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
             ...options,
-            name: 'stock-market',
+            name: 'yahoo-stock-market',
         });
         this.on('ready', this.onReady.bind(this));
         this.on('unload', this.onUnload.bind(this));
@@ -28,7 +28,7 @@ class StockMarket extends utils.Adapter {
      * Is called when databases are connected and adapter received configuration.
      */
     private async onReady(): Promise<void> {
-        this.log.info('initialize Stock-Market adapter');
+        this.log.info('initialize yahoo-stock-market adapter');
 
 
         this.symbols = this.config.symbols;
