@@ -1,0 +1,8 @@
+{
+    "stock-market adapter settings": "Adapterinstellingen voor stock-market",
+    "interval": "Interval",
+    "interval_help": "Interval in minuten, om de aandelenmarkt op te zoeken",
+    "symbols": "symbolen",
+    "symbols_help": "Voorraadsymbolen, scheid komma voor meerdere",
+    "general": "Algemeen"
+}

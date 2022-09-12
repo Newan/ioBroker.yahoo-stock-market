@@ -1,0 +1,8 @@
+{
+    "stock-market adapter settings": "Paramètres d'adaptateur pour stock-market",
+    "interval": "Intervalle",
+    "interval_help": "Intervalle en minutes, pour rechercher le marché boursier",
+    "symbols": "Symboles",
+    "symbols_help": "Symboles boursiers, veuillez séparer les virgules pour plusieurs",
+    "general": "Général"
+}

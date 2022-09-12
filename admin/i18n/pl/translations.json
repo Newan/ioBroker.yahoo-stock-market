@@ -1,0 +1,8 @@
+{
+    "stock-market adapter settings": "Ustawienia adaptera dla stock-market",
+    "interval": "Interwał",
+    "interval_help": "Interwał w minutach, aby sprawdzić giełdę",
+    "symbols": "Symbolika",
+    "symbols_help": "Symbole giełdowe, proszę oddzielić przecinek dla wielokrotności",
+    "general": "Ogólny"
+}
