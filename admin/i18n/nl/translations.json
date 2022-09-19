@@ -3,6 +3,6 @@
     "interval": "Interval",
     "interval_help": "Interval in minuten, om de aandelenmarkt op te zoeken",
     "symbols": "symbolen",
-    "symbols_help": "Voorraadsymbolen, scheid komma voor meerdere",
-    "general": "Algemeen"
+    "general": "Algemeen",
+    "symbols_help": "Voorraadsymbolen, bevestig een symbool per 'enter'"
 }

@@ -4,7 +4,7 @@
 declare global {
     namespace ioBroker {
         interface AdapterConfig {
-            symbols: string;
+            symbols: Array;
             interval: number;
         }
     }

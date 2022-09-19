@@ -3,6 +3,6 @@
     "interval": "Intervallo",
     "interval_help": "Intervallo in pochi minuti, per cercare il mercato azionario",
     "symbols": "Simboli",
-    "symbols_help": "Simboli azionari, separare la virgola per multipli",
-    "general": "Generale"
+    "general": "Generale",
+    "symbols_help": "Simboli azionari, conferma un simbolo per 'invio'"
 }

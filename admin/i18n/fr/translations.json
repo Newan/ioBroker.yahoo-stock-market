@@ -3,6 +3,6 @@
     "interval": "Intervalle",
     "interval_help": "Intervalle en minutes, pour rechercher le marché boursier",
     "symbols": "Symboles",
-    "symbols_help": "Symboles boursiers, veuillez séparer les virgules pour plusieurs",
-    "general": "Général"
+    "general": "Général",
+    "symbols_help": "Symboles boursiers, confirmez un symbole par 'entrer'"
 }

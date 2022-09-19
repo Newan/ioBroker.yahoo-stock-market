@@ -18,7 +18,7 @@
             },
             "symbols": {
                 "newLine": true,
-                "type": "text",
+                "type": "chips",
                 "label": "symbols",
                 "help": "symbols_help",
                 "sm": 12,

@@ -3,6 +3,6 @@
     "interval": "Intervall",
     "interval_help": "Intervall in Minuten, um den Aktienmarkt nachzuschlagen",
     "symbols": "Symbole",
-    "symbols_help": "Aktiensymbole, bei mehreren bitte Komma trennen",
-    "general": "Allgemein"
+    "general": "Allgemein",
+    "symbols_help": "Aktiensymbole, bestätigen Sie ein Symbol per 'enter'"
 }

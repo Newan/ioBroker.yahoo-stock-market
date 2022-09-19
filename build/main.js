@@ -26,14 +26,14 @@ class StockMarket extends utils.Adapter {
       name: "yahoo-stock-market"
     });
     this.interval = 0;
-    this.symbols = "";
+    this.symbols = [];
     this.on("ready", this.onReady.bind(this));
     this.on("unload", this.onUnload.bind(this));
   }
   async onReady() {
     this.log.info("initialize yahoo-stock-market adapter");
     this.symbols = this.config.symbols;
-    if (this.symbols == "" || this.symbols == void 0) {
+    if (this.symbols.length <= 0 || this.symbols == void 0) {
       this.log.error("No stock symbols set. Please edit your adapter settings and restart this adapter!");
       return;
     }
@@ -42,25 +42,23 @@ class StockMarket extends utils.Adapter {
       this.log.error("No interval set. Please edit your adapter settings and restart this adapter!");
       return;
     }
-    await this.readStockMarket();
+    this.readStockMarket();
+    this.myInterval = this.setInterval(() => this.readStockMarket(), this.interval * 60 * 1e3);
   }
-  async readStockMarket() {
+  readStockMarket() {
     this.log.debug("stocks to check: " + this.symbols);
-    let result;
-    this.symbols.split(",").forEach(async (symbol) => {
-      try {
-        result = await import_yahoo_finance2.default.quoteSummary(symbol, {
-          modules: ["price"]
-        });
-        await this.setNewStockObjects(symbol, result);
+    this.symbols.forEach((symbol) => {
+      import_yahoo_finance2.default.quoteSummary(symbol, {
+        modules: ["price"]
+      }).then((result) => {
+        this.setNewStockObjects(symbol, result);
         this.log.debug("Api return: '" + JSON.stringify(result) + "'");
         this.log.debug("stocks to check: " + this.config.symbols);
-      } catch (e) {
+      }).catch((err) => {
         this.log.error("Error on APi Call for symbol: " + symbol);
-        this.log.error(e.toString());
-      }
+        this.log.error(err.toString());
+      });
     });
-    this.myInterval = await new Promise((resolve) => setTimeout(resolve, this.interval * 60 * 1e3));
   }
   async setNewStockObjects(symbol, apiResult) {
     symbol = symbol.replace(".", ":");

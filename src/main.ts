@@ -12,7 +12,7 @@ class StockMarket extends utils.Adapter {
 
     private myInterval: any;
     private interval = 0;
-    private symbols = '';
+    private symbols = [];
 
 
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
@@ -32,7 +32,7 @@ class StockMarket extends utils.Adapter {
 
 
         this.symbols = this.config.symbols;
-        if(this.symbols == '' || this.symbols == undefined) {
+        if(this.symbols.length <= 0 || this.symbols == undefined) {
             this.log.error('No stock symbols set. Please edit your adapter settings and restart this adapter!');
             return;
         }
@@ -43,31 +43,32 @@ class StockMarket extends utils.Adapter {
             return;
         }
 
+        //initial call
+        this.readStockMarket();
+
         //start Interval
-        this.myInterval =  this.setInterval(await this.readStockMarket().then(), (this.interval * 60) * 1000);
+        this.myInterval =  this.setInterval(() => this.readStockMarket(), (this.interval * 60) * 1000);
     }
 
-    private async readStockMarket(): Promise<void> {
+    private readStockMarket(): void {
 
         this.log.debug('stocks to check: ' + this.symbols);
-        let result;
-        //For each symbol ask API
-        this.symbols.split(',').forEach(async symbol => {
-            try {
-                result = await yahooFinance.quoteSummary(symbol, {
-                    // 1. Try adding, removing or changing modules
-                    // You'll get suggestions after typing first quote mark (")
-                    modules: ['price']
-                });
 
-                await this.setNewStockObjects(symbol, result);
+        //For each symbol ask API
+        this.symbols.forEach( symbol => {
+            yahooFinance.quoteSummary(symbol, {
+                // 1. Try adding, removing or changing modules
+                // You'll get suggestions after typing first quote mark (")
+                modules: ['price']
+            }).then( result => {
+                this.setNewStockObjects(symbol, result);
                 this.log.debug("Api return: '" + JSON.stringify(result) + "'");
 
                 this.log.debug('stocks to check: ' + this.config.symbols);
-            } catch(e: any) {
+            }).catch(err => {
                 this.log.error('Error on APi Call for symbol: ' + symbol);
-                this.log.error(e.toString());
-            }
+                this.log.error(err.toString());
+            });
         });
     }
 

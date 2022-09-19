@@ -3,6 +3,6 @@
     "interval": "Interval",
     "interval_help": "Interval in minutes, to lookup the stock market",
     "symbols": "Symbols",
-    "symbols_help": "Stock symbols, please separate comma for multiple",
+    "symbols_help": "Stock symbols, confirm a symbol per 'enter'",
     "general": "General"
 }

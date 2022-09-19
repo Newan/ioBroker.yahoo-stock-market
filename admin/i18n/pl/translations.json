@@ -3,6 +3,6 @@
     "interval": "Interwał",
     "interval_help": "Interwał w minutach, aby sprawdzić giełdę",
     "symbols": "Symbolika",
-    "symbols_help": "Symbole giełdowe, proszę oddzielić przecinek dla wielokrotności",
-    "general": "Ogólny"
+    "general": "Ogólny",
+    "symbols_help": "Symbole giełdowe, potwierdź symbol przez „enter”"
 }
