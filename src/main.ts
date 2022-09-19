@@ -44,7 +44,7 @@ class StockMarket extends utils.Adapter {
         }
 
         //start Interval
-        await this.readStockMarket();
+        this.myInterval =  this.setInterval(await this.readStockMarket().then(), (this.interval * 60) * 1000);
     }
 
     private async readStockMarket(): Promise<void> {
@@ -69,9 +69,6 @@ class StockMarket extends utils.Adapter {
                 this.log.error(e.toString());
             }
         });
-
-        // return await for better async stack trace support in case of errors.
-        this. myInterval =  await new Promise(resolve => setTimeout(resolve, (this.interval * 60) * 1000));
     }
 
     async setNewStockObjects(symbol: string, apiResult: any): Promise<void> {
