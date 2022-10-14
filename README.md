@@ -19,8 +19,7 @@ Check the current stock value
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.0.4 (2022-10-14)
 * update for latest-repository
 
 ### 0.0.3 (2022-09-12)

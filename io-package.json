@@ -1,85 +1,85 @@
 {
-    "common": {
-        "name": "yahoo-stock-market",
-        "version": "0.0.3",
-        "news": {
-            "0.0.4": {
-                "en": "update for latest-repository"
-            },
-            "0.0.3": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
-            }
-        },
-        "titleLang": {
-            "en": "Stock Market",
-            "de": "Stock Market",
-            "ru": "Фондовый рынок",
-            "pt": "Stock Market",
-            "nl": "Stock Market",
-            "fr": "Stock Market",
-            "it": "Stock Market",
-            "es": "Bolsa de Valores",
-            "pl": "Giełda Papierów Wartościowych",
-            "zh-cn": "股市"
-        },
-        "desc": {
-            "en": "stockmarket",
-            "de": "Aktienmarkt",
-            "ru": "фондовый рынок",
-            "pt": "mercado de ações",
-            "nl": "beurs",
-            "fr": "bourse",
-            "it": "mercato azionario",
-            "es": "bolsa de Valores",
-            "pl": "Giełda Papierów Wartościowych",
-            "zh-cn": "股市"
-        },
-        "authors": [
-            "Newan <info@newan.de>"
-        ],
-        "keywords": [
-            "stock market Börse Aktien Aktienwert"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "build/main.js",
-        "icon": "yahoo-stock-market.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Newan/ioBroker.yahoo-stock-market/main/admin/yahoo-stock-market.png",
-        "readme": "https://github.com/Newan/ioBroker.yahoo-stock-market/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "misc-data",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "adminUI": {
-            "config": "json"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.13"
-            }
-        ]
+  "common": {
+    "name": "yahoo-stock-market",
+    "version": "0.0.4",
+    "news": {
+      "0.0.4": {
+        "en": "update for latest-repository"
+      },
+      "0.0.3": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "zh-cn": "首次出版"
+      }
     },
-    "native": {
-        "symbols": "",
-        "interval": 60
+    "titleLang": {
+      "en": "Stock Market",
+      "de": "Stock Market",
+      "ru": "Фондовый рынок",
+      "pt": "Stock Market",
+      "nl": "Stock Market",
+      "fr": "Stock Market",
+      "it": "Stock Market",
+      "es": "Bolsa de Valores",
+      "pl": "Giełda Papierów Wartościowych",
+      "zh-cn": "股市"
     },
-    "objects": [],
-    "instanceObjects": []
+    "desc": {
+      "en": "stockmarket",
+      "de": "Aktienmarkt",
+      "ru": "фондовый рынок",
+      "pt": "mercado de ações",
+      "nl": "beurs",
+      "fr": "bourse",
+      "it": "mercato azionario",
+      "es": "bolsa de Valores",
+      "pl": "Giełda Papierów Wartościowych",
+      "zh-cn": "股市"
+    },
+    "authors": [
+      "Newan <info@newan.de>"
+    ],
+    "keywords": [
+      "stock market Börse Aktien Aktienwert"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "build/main.js",
+    "icon": "yahoo-stock-market.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/Newan/ioBroker.yahoo-stock-market/main/admin/yahoo-stock-market.png",
+    "readme": "https://github.com/Newan/ioBroker.yahoo-stock-market/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "misc-data",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.22"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.13"
+      }
+    ]
+  },
+  "native": {
+    "symbols": "",
+    "interval": 60
+  },
+  "objects": [],
+  "instanceObjects": []
 }
