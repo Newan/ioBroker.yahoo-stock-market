@@ -30,7 +30,6 @@ class StockMarket extends utils.Adapter {
     private async onReady(): Promise<void> {
         this.log.info('initialize yahoo-stock-market adapter');
 
-
         this.symbols = this.config.symbols;
         if(this.symbols.length <= 0 || this.symbols == undefined) {
             this.log.error('No stock symbols set. Please edit your adapter settings and restart this adapter!');
