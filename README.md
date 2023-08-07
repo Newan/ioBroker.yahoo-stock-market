@@ -20,7 +20,7 @@ Check the current stock value
     ### **WORK IN PROGRESS**
 -->
 ### 0.0.5 (2023-08-07)
-* fox vo Cokkiebug #6
+* fix foo Cokkiebug #6
 
 ### 0.0.4 (2022-10-14)
 * update for latest-repository
