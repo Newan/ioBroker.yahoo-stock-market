@@ -19,6 +19,9 @@ Check the current stock value
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* fix #9, update yahoo-api
+
 ### 0.0.5 (2023-08-07)
 * fix for Cookiebug #6
 
@@ -29,7 +32,7 @@ Check the current stock value
 * (Newan) rename adapter for npm
 
 ### 0.0.2 (2022-09-12)
-* (Newan) chnage to yahoo api
+* (Newan) change to yahoo api
 
 ### 0.0.1 (2022-09-12)
 * (Newan) initial release

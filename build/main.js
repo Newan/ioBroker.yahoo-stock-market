@@ -14,6 +14,10 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
@@ -30,6 +34,9 @@ class StockMarket extends utils.Adapter {
     this.on("ready", this.onReady.bind(this));
     this.on("unload", this.onUnload.bind(this));
   }
+  /**
+   * Is called when databases are connected and adapter received configuration.
+   */
   async onReady() {
     this.log.info("initialize yahoo-stock-market adapter");
     this.symbols = this.config.symbols;
@@ -49,6 +56,8 @@ class StockMarket extends utils.Adapter {
     this.log.debug("stocks to check: " + this.symbols);
     this.symbols.forEach((symbol) => {
       import_yahoo_finance2.default.quoteSummary(symbol, {
+        // 1. Try adding, removing or changing modules
+        // You'll get suggestions after typing first quote mark (")
         modules: ["price"]
       }).then((result) => {
         this.setNewStockObjects(symbol, result);
@@ -245,6 +254,9 @@ class StockMarket extends utils.Adapter {
     });
     await this.setStateAsync(symbol + ".regularMarketChangePercent", parseFloat(apiResult.price.regularMarketChangePercent) * 100, true);
   }
+  /**
+   * Is called when adapter shuts down - callback has to be called under any circumstances!
+   */
   onUnload(callback) {
     try {
       clearTimeout(this.myInterval);
