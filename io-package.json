@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "yahoo-stock-market",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "news": {
+      "0.0.6": {
+        "en": "fix #9, update yahoo-api",
+        "de": "fix #9, update yahoo-api",
+        "ru": "исправление #9, обновление yahoo-api",
+        "pt": "corrigir #9, atualizar yahoo-api",
+        "nl": "fix #9, update yahoo-api",
+        "fr": "corriger #9, mettre à jour yahoo-api",
+        "it": "correzione #9, aggiornamento yahoo-api",
+        "es": "#9, actualiza yahoo-api",
+        "pl": "fix # 9, update yahoo- api",
+        "uk": "fix #9, оновлення yahoo-api",
+        "zh-cn": "修复 # 9, 更新 yahoo- api"
+      },
       "0.0.5": {
         "en": "fox vo Cokkiebug #6",
         "de": "fox vo Cokkiebug #6",

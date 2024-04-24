@@ -19,7 +19,7 @@ Check the current stock value
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.6 (2024-04-24)
 * fix #9, update yahoo-api
 
 ### 0.0.5 (2023-08-07)
