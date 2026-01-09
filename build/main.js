@@ -23,260 +23,174 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_yahoo_finance2 = __toESM(require("yahoo-finance2"));
-class StockMarket extends utils.Adapter {
+const yahooFinance = new import_yahoo_finance2.default();
+class YahooStockMarket extends utils.Adapter {
   constructor(options = {}) {
     super({
       ...options,
       name: "yahoo-stock-market"
     });
-    this.interval = 0;
-    this.symbols = [];
+    this.stocks = [];
     this.on("ready", this.onReady.bind(this));
     this.on("unload", this.onUnload.bind(this));
   }
   /**
-   * Is called when databases are connected and adapter received configuration.
+   * Wird aufgerufen, wenn der Adapter gestartet wird
    */
   async onReady() {
-    this.log.info("initialize yahoo-stock-market adapter");
-    this.symbols = this.config.symbols;
-    if (this.symbols.length <= 0 || this.symbols == void 0) {
-      this.log.error("No stock symbols set. Please edit your adapter settings and restart this adapter!");
+    this.log.info("Yahoo Stock Market Adapter gestartet (yahoo-finance2 v3)");
+    const configAny = this.config;
+    if (configAny.symbols && Array.isArray(configAny.symbols)) {
+      this.stocks = configAny.symbols.map((symbol) => ({
+        symbol,
+        name: symbol
+      }));
+    } else if (this.config.stocks && Array.isArray(this.config.stocks)) {
+      this.stocks = this.config.stocks;
+    }
+    const updateIntervalMinutes = configAny.interval || this.config.updateInterval || 15;
+    if (this.stocks.length === 0) {
+      this.log.warn("Keine Aktien konfiguriert! Bitte f\xFCge Aktien in der Adapter-Konfiguration hinzu.");
       return;
     }
-    this.interval = this.config.interval;
-    if (this.interval <= 0) {
-      this.log.error("No interval set. Please edit your adapter settings and restart this adapter!");
-      return;
-    }
-    this.readStockMarket();
-    this.myInterval = this.setInterval(() => this.readStockMarket(), this.interval * 60 * 1e3);
-  }
-  readStockMarket() {
-    this.log.debug("stocks to check: " + this.symbols);
-    this.symbols.forEach((symbol) => {
-      import_yahoo_finance2.default.quoteSummary(symbol, {
-        // 1. Try adding, removing or changing modules
-        // You'll get suggestions after typing first quote mark (")
-        modules: ["price"]
-      }).then((result) => {
-        this.setNewStockObjects(symbol, result);
-        this.log.debug("Api return: '" + JSON.stringify(result) + "'");
-        this.log.debug("stocks to check: " + this.config.symbols);
-      }).catch((err) => {
-        this.log.error("Error on APi Call for symbol: " + symbol);
-        this.log.error(err.toString());
-      });
-    });
-  }
-  async setNewStockObjects(symbol, apiResult) {
-    symbol = symbol.replace(".", ":");
-    await this.setObjectNotExistsAsync(symbol + ".shortName", {
-      type: "state",
-      common: {
-        name: "shortName",
-        role: "info",
-        type: "string",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".shortName", apiResult.price.shortName, true);
-    await this.setObjectNotExistsAsync(symbol + ".longName", {
-      type: "state",
-      common: {
-        name: "longName",
-        role: "info",
-        type: "string",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".longName", apiResult.price.longName, true);
-    await this.setObjectNotExistsAsync(symbol + ".currency", {
-      type: "state",
-      common: {
-        name: "currency",
-        role: "info",
-        type: "string",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".currency", apiResult.price.currency, true);
-    await this.setObjectNotExistsAsync(symbol + ".exchangeName", {
-      type: "state",
-      common: {
-        name: "exchangeName",
-        role: "info",
-        type: "string",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".exchangeName", apiResult.price.exchangeName, true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketOpen", {
-      type: "state",
-      common: {
-        name: "regularMarketOpen",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketOpen", parseFloat(apiResult.price.regularMarketOpen), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketPreviousClose", {
-      type: "state",
-      common: {
-        name: "regularMarketPreviousClose",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketPreviousClose", parseFloat(apiResult.price.regularMarketPreviousClose), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketPreviousClose", {
-      type: "state",
-      common: {
-        name: "regularMarketPreviousClose",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketPreviousClose", parseFloat(apiResult.price.regularMarketPreviousClose), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketVolume", {
-      type: "state",
-      common: {
-        name: "regularMarketVolume",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketVolume", parseInt(apiResult.price.regularMarketVolume), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketDayLow", {
-      type: "state",
-      common: {
-        name: "regularMarketDayLow",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketDayLow", parseFloat(apiResult.price.regularMarketDayLow), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketDayHigh", {
-      type: "state",
-      common: {
-        name: "regularMarketDayHigh",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketDayHigh", parseFloat(apiResult.price.regularMarketDayHigh), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketPrice", {
-      type: "state",
-      common: {
-        name: "regularMarketPrice",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketPrice", parseFloat(apiResult.price.regularMarketPrice), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketChange", {
-      type: "state",
-      common: {
-        name: "regularMarketChange",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketChange", parseFloat(apiResult.price.regularMarketChange), true);
-    await this.setObjectNotExistsAsync(symbol + ".regularMarketChangePercent", {
-      type: "state",
-      common: {
-        name: "regularMarketChangePercent",
-        role: "value",
-        type: "number",
-        write: false,
-        read: true
-      },
-      native: {}
-    }).catch((error) => {
-      this.log.error(error);
-    });
-    await this.setStateAsync(symbol + ".regularMarketChangePercent", parseFloat(apiResult.price.regularMarketChangePercent) * 100, true);
+    this.log.info(`${this.stocks.length} Aktien konfiguriert, Update-Intervall: ${updateIntervalMinutes} Minuten`);
+    await this.createStockObjects();
+    await this.updateAllStocks();
+    this.updateInterval = this.setInterval(
+      () => this.updateAllStocks(),
+      updateIntervalMinutes * 60 * 1e3
+    );
   }
   /**
-   * Is called when adapter shuts down - callback has to be called under any circumstances!
+   * Erstellt die ioBroker-Objekte für alle konfigurierten Aktien
+   */
+  async createStockObjects() {
+    for (const stock of this.stocks) {
+      const symbol = this.sanitizeSymbol(stock.symbol);
+      await this.setObjectNotExistsAsync(symbol, {
+        type: "channel",
+        common: {
+          name: stock.name || stock.symbol
+        },
+        native: {}
+      });
+      const dataPoints = [
+        { id: "regularMarketPrice", name: "Aktueller Kurs", type: "number", role: "value", unit: "" },
+        { id: "currency", name: "W\xE4hrung", type: "string", role: "text", unit: "" },
+        { id: "regularMarketChange", name: "\xC4nderung", type: "number", role: "value", unit: "" },
+        { id: "regularMarketChangePercent", name: "\xC4nderung %", type: "number", role: "value", unit: "%" },
+        { id: "regularMarketOpen", name: "Er\xF6ffnungskurs", type: "number", role: "value", unit: "" },
+        { id: "regularMarketDayHigh", name: "Tageshoch", type: "number", role: "value", unit: "" },
+        { id: "regularMarketDayLow", name: "Tagestief", type: "number", role: "value", unit: "" },
+        { id: "regularMarketVolume", name: "Volumen", type: "number", role: "value", unit: "" },
+        { id: "marketCap", name: "Marktkapitalisierung", type: "number", role: "value", unit: "" },
+        { id: "fiftyTwoWeekHigh", name: "52-Wochen-Hoch", type: "number", role: "value", unit: "" },
+        { id: "fiftyTwoWeekLow", name: "52-Wochen-Tief", type: "number", role: "value", unit: "" },
+        { id: "marketState", name: "Marktstatus", type: "string", role: "text", unit: "" },
+        { id: "displayName", name: "Vollst\xE4ndiger Name", type: "string", role: "text", unit: "" },
+        { id: "lastUpdate", name: "Letzte Aktualisierung", type: "string", role: "text", unit: "" }
+      ];
+      for (const dp of dataPoints) {
+        await this.setObjectNotExistsAsync(`${symbol}.${dp.id}`, {
+          type: "state",
+          common: {
+            name: dp.name,
+            type: dp.type,
+            role: dp.role,
+            read: true,
+            write: false,
+            unit: dp.unit
+          },
+          native: {}
+        });
+      }
+    }
+  }
+  /**
+   * Aktualisiert die Daten für alle konfigurierten Aktien
+   */
+  async updateAllStocks() {
+    this.log.debug("Starte Update f\xFCr alle Aktien...");
+    for (const stock of this.stocks) {
+      try {
+        await this.updateStock(stock);
+      } catch (error) {
+        this.log.error(`Fehler beim Update f\xFCr ${stock.symbol}: ${error}`);
+      }
+    }
+  }
+  /**
+   * Aktualisiert die Daten für eine einzelne Aktie
+   */
+  async updateStock(stock) {
+    var _a, _b;
+    const symbol = this.sanitizeSymbol(stock.symbol);
+    try {
+      this.log.debug(`Rufe Daten f\xFCr ${stock.symbol} ab...`);
+      const quote = await yahooFinance.quote(stock.symbol);
+      if (!quote) {
+        this.log.warn(`Keine Daten f\xFCr ${stock.symbol} erhalten`);
+        return;
+      }
+      this.log.debug(`Daten f\xFCr ${stock.symbol} erfolgreich abgerufen`);
+      const updates = [
+        { id: "regularMarketPrice", value: quote.regularMarketPrice },
+        { id: "currency", value: quote.currency },
+        { id: "regularMarketChange", value: quote.regularMarketChange },
+        { id: "regularMarketChangePercent", value: quote.regularMarketChangePercent },
+        { id: "regularMarketOpen", value: quote.regularMarketOpen },
+        { id: "regularMarketDayHigh", value: quote.regularMarketDayHigh },
+        { id: "regularMarketDayLow", value: quote.regularMarketDayLow },
+        { id: "regularMarketVolume", value: quote.regularMarketVolume },
+        { id: "marketCap", value: quote.marketCap },
+        { id: "fiftyTwoWeekHigh", value: quote.fiftyTwoWeekHigh },
+        { id: "fiftyTwoWeekLow", value: quote.fiftyTwoWeekLow },
+        { id: "marketState", value: quote.marketState },
+        { id: "displayName", value: quote.displayName || quote.longName || quote.shortName },
+        { id: "lastUpdate", value: (/* @__PURE__ */ new Date()).toISOString() }
+      ];
+      for (const update of updates) {
+        if (update.value !== void 0 && update.value !== null) {
+          await this.setStateAsync(`${symbol}.${update.id}`, update.value, true);
+        }
+      }
+      this.log.info(`${stock.symbol}: ${(_a = quote.regularMarketPrice) != null ? _a : "N/A"} ${(_b = quote.currency) != null ? _b : ""}`);
+    } catch (error) {
+      const err = error;
+      if (err.name === "FailedYahooValidationError") {
+        this.log.error(`Validierungsfehler f\xFCr ${stock.symbol}: ${err.message}`);
+      } else if (err.name === "HTTPError") {
+        this.log.error(`HTTP-Fehler f\xFCr ${stock.symbol}: ${err.message}`);
+      } else {
+        this.log.error(`Fehler beim API-Aufruf f\xFCr ${stock.symbol}: ${err.message || err}`);
+      }
+      throw error;
+    }
+  }
+  /**
+   * Bereinigt das Symbol für die Verwendung als Objekt-ID
+   */
+  sanitizeSymbol(symbol) {
+    return symbol.replace(/[^a-zA-Z0-9_-]/g, "_");
+  }
+  /**
+   * Wird aufgerufen, wenn der Adapter beendet wird
    */
   onUnload(callback) {
     try {
-      clearTimeout(this.myInterval);
+      if (this.updateInterval) {
+        this.clearInterval(this.updateInterval);
+      }
+      this.log.info("Yahoo Stock Market Adapter beendet");
       callback();
     } catch (e) {
       callback();
     }
   }
-  async deleteOldObject(stockKey, index) {
-    const delObject = await this.getObjectAsync(stockKey + "." + index + ".close");
-    if (delObject) {
-      this.log.debug("Found old Objects for key - " + stockKey + " and index - " + index.toString());
-      await this.delObjectAsync(stockKey + "." + index, { recursive: true });
-      await this.deleteOldObject(stockKey, index + 1);
-    }
-  }
 }
 if (require.main !== module) {
-  module.exports = (options) => new StockMarket(options);
+  module.exports = (options) => new YahooStockMarket(options);
 } else {
-  (() => new StockMarket())();
+  (() => new YahooStockMarket())();
 }
 //# sourceMappingURL=main.js.map
