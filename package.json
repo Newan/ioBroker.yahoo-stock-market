@@ -9,6 +9,7 @@
   "homepage": "https://github.com/Newan/ioBroker.yahoo-stock-market",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "stock market Börse Aktien Aktienwert"
   ],
   "repository": {
