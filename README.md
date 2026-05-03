@@ -40,6 +40,8 @@ Check the current stock value
 ### 0.0.1 (2022-09-12)
 * (Newan) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## Donation
 [![](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L55UBQJKJEUJL)
 
