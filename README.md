@@ -19,6 +19,10 @@ Check the current stock value
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 0.0.7 (2024-06-10)
 * fox #14, update yahoo-api
 
